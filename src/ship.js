@@ -1,4 +1,4 @@
-class Ship {
+export default class Ship {
     constructor(length, name){
         this.length = length;
         this.name = name;
@@ -17,4 +17,3 @@ class Ship {
         return this.sunk;
     }
 }
-module.exports = Ship
