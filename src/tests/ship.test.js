@@ -17,4 +17,13 @@ describe(('Ship tests'), () => {
 
         expect(ships.hits).toBe(1);
     })
+    test("Test ship sunk", () => {
+
+        let ships = new Ship(3,"potato2");
+        ships.hit()
+        ships.hit()
+        ships.hit()
+        ships.isSunk()
+        expect(ships.sunk).toBe(true);
+    })
 })
