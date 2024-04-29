@@ -17,27 +17,62 @@ export default class Gameboard {
         this.missedAttacks = new Set();
         this.board = boardTemplate;
     }
-    
-    placeShip(Ship, coordinates){
+
+    isInBounds(coordinates){
+        if (!Array.isArray(coordinates) || coordinates.length === 0) {
+            return false; // Invalid coordinates
+        }
+
         for (const coord of coordinates) {
             const [row, column] = coord;
+
             if (row < 0 || row >= this.board.length || column < 0 || column >= this.board[0].length){
                 return false // Out-of-bounds
             }
+            return true
+        }
+    }
+    
+    placeShip(ship, coordinates){
+
+        if (!this.isInBounds(coordinates)){
+            return false // Out-of-bounds
+        }
+
+        for (const coord of coordinates) {
+            const [row, column] = coord;
 
             if(this.board[row][column] !== ''){
                 return false // Cell is occupeied
             }
 
-            this.board[row][column] = Ship; // Place ship
+            this.board[row][column] = ship; // Place ship
         }
+        
         return true // Successful placement
     }
 
-    
+    receiveAttack(coordinates){
+        if (!this.isInBounds(coordinates)){
+            return false // Out-of-bounds
+        }
+
+        const [row, column] = coordinates
+
+        if(this.board[row][column] === ''){
+            this.missedAttacks.add(coordinates);
+            return 'Miss'
+        }else if (typeof this.board[row][column] === 'object'){
+            this.board[row][column].hit();
+            return 'Hit'
+        }else{
+            return false
+        }
+    }
 
 }
 
-let ship1 = new Ship;
-let gameboard1 = new Gameboard;
-gameboard1.placeShip(ship1, [[3,1]])
+// let ship1 = new Ship;
+// let gameboard1 = new Gameboard;
+// gameboard1.placeShip(ship1, [[3,1], [2,1], [1,1]]);
+// console.log(gameboard1.board)
