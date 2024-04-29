@@ -2,18 +2,22 @@ export default class Ship {
     constructor(length, name){
         this.length = length;
         this.name = name;
-        this.sunk = false;
-        this.hits = 0;
+        this.sunk = false; // Stataus of ship condition
+        this.hits = 0; // Counter for the number of hits
     }
 
     hit(){
-        this.hits += 1
+        if(this.hits < this.length){ // if ship already sunk
+            this.hits += 1
+            return this.hits; // return the updated hit count            
+        }
+        return false
     }
 
     isSunk(){
         if(this.hits === this.length){
             this.sunk = true;
         }
-        return this.sunk; //not sure if needed
+        return this.sunk; //Return the current status
     }
 }

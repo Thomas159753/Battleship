@@ -21,9 +21,23 @@ export default class Gameboard {
     placeShip(Ship, coordinates){
         for (const coord of coordinates) {
             const [row, column] = coord;
-            this.board[row][column] = Ship;
+            if (row < 0 || row >= this.board.length || column < 0 || column >= this.board[0].length){
+                return false // Out-of-bounds
+            }
+
+            if(this.board[row][column] !== ''){
+                return false // Cell is occupeied
+            }
+
+            this.board[row][column] = Ship; // Place ship
         }
-        return this.board        
+        return true // Successful placement
     }
 
+    
+
 }
+
+let ship1 = new Ship;
+let gameboard1 = new Gameboard;
+gameboard1.placeShip(ship1, [[3,1]])
