@@ -14,7 +14,8 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
         ]
-        this.missedAttacks = new Set();
+        this.missedAttacks = [];
+
         this.board = boardTemplate;
     }
 
@@ -60,26 +61,24 @@ export default class Gameboard {
 
         for (const coord of coordinates) {
             const [row, column] = coord
-            
-            if(this.board[row][column] === '' && (!this.missedAttacks.has('[row,column]'))){ // error here with the has()
-                this.missedAttacks.add([row,column]);
+
+
+            if(this.board[row][column] === 'Miss' || this.board[row][column] === 'Hit'){ // if already played move
+                return `Already ${this.board[row][column]}`
+            }
+
+            if(this.board[row][column] === ''){ // if its a miss
+                this.missedAttacks.push(coord);
+                this.board[row][column] === 'Miss'
                 return 'Miss'
-            }else if (typeof this.board[row][column] === 'object'){
+            }else if (typeof this.board[row][column] === 'object'){ // if its a hit
                 this.board[row][column].hit();
+                this.board[row][column] = 'Hit'
                 return 'Hit'
-            }else{
-                return false
             }
         }
+
+        return 'Error'
     }
 
 }
-
-let ship1 = new Ship;
-let gameboard1 = new Gameboard;
-// gameboard1.placeShip(ship1, [[3,1], [2,1], [1,1]]);
-// console.log(gameboard1.board)
-console.log(gameboard1.receiveAttack([[2,1]]))
-console.log(gameboard1.missedAttacks)
-console.log(gameboard1.receiveAttack([[2,1]]))
-console.log(gameboard1.missedAttacks)
