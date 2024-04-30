@@ -21,7 +21,11 @@ describe(('Gameboard tests'), () => {
         expect(ship1.hits).toBe(1)
         expect(board.receiveAttack([[2,3]])).toBe('Already Hit');
     })
-    // test("", () => {
-
-    // })
+    test("Test Game Over", () => {
+        let ship1 = new Ship(2,'Ship1');
+        board.placeShip(ship1,[[1,3],[2,3]]);
+        board.receiveAttack([[2,3],[1,3]])
+        board.receiveAttack([[1,3]])
+        expect(board.isGameOver()).toBe(true)
+    })
 })

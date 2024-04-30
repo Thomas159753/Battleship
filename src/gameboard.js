@@ -15,6 +15,7 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
         ]
         this.missedAttacks = [];
+        this.ships = []
 
         this.board = boardTemplate;
     }
@@ -50,7 +51,7 @@ export default class Gameboard {
 
             this.board[row][column] = ship; // Place ship
         }
-        
+        this.ships.push(ship)
         return true // Successful placement
     }
 
@@ -79,6 +80,10 @@ export default class Gameboard {
         }
 
         return 'Error'
+    }
+
+    isGameOver(){
+       return this.ships.every(ship => ship.isSunk());
     }
 
 }
