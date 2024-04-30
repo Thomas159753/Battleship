@@ -16,7 +16,7 @@ describe(('Gameboard tests'), () => {
     test("Test Attack if a missed", () => {
         let ship1 = new Ship(2,'Ship1');
         expect(board.placeShip(ship1,[[1,3],[2,3]])).toBe(true);
-        expect(board.receiveAttack([3,3])).toBe('Miss');
+        expect(board.receiveAttack([[3,3]])).toBe('Miss');
 
     })
     // test("", () => {

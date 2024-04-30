@@ -24,6 +24,7 @@ export default class Gameboard {
         }
 
         for (const coord of coordinates) {
+            
             const [row, column] = coord;
 
             if (row < 0 || row >= this.board.length || column < 0 || column >= this.board[0].length){
@@ -57,22 +58,28 @@ export default class Gameboard {
             return false // Out-of-bounds
         }
 
-        const [row, column] = coordinates
-
-        if(this.board[row][column] === ''){
-            this.missedAttacks.add(coordinates);
-            return 'Miss'
-        }else if (typeof this.board[row][column] === 'object'){
-            this.board[row][column].hit();
-            return 'Hit'
-        }else{
-            return false
+        for (const coord of coordinates) {
+            const [row, column] = coord
+            
+            if(this.board[row][column] === '' && (!this.missedAttacks.has('[row,column]'))){ // error here with the has()
+                this.missedAttacks.add([row,column]);
+                return 'Miss'
+            }else if (typeof this.board[row][column] === 'object'){
+                this.board[row][column].hit();
+                return 'Hit'
+            }else{
+                return false
+            }
         }
     }
 
 }
 
-// let ship1 = new Ship;
-// let gameboard1 = new Gameboard;
+let ship1 = new Ship;
+let gameboard1 = new Gameboard;
 // gameboard1.placeShip(ship1, [[3,1], [2,1], [1,1]]);
 // console.log(gameboard1.board)
+console.log(gameboard1.receiveAttack([[2,1]]))
+console.log(gameboard1.missedAttacks)
+console.log(gameboard1.receiveAttack([[2,1]]))
+console.log(gameboard1.missedAttacks)
