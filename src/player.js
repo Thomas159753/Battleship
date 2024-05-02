@@ -6,5 +6,7 @@ export default class Player{
         this.playerName = name;
     }
 
-        
+    sentAtack(enemy,coordinates){
+        enemy.board.receiveAttack(coordinates);
+    }
 }
