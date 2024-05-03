@@ -4,17 +4,18 @@ import Player from '../player.js';
 
 let player
 beforeEach(() => {
-    player = new Player();
+    player = new Player('tester');
   });
 
 describe(('Player tests'), () => {
 
     test("Creates Players", () => {
-        expect(player.playerName).toBe('Tester')
+        expect(player.name).toBe('tester')
     })
     test("Sent Atack", () => {
         let enemy = new Player();
         enemy.placeShip(new Ship(2,'potato'), [[1,1],[1,2]])
         player.sentAtack(enemy,[[1,1]])
+        expect
     })
 })

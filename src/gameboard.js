@@ -1,3 +1,5 @@
+import Ship from "./ship.js"; //no need but i keep it
+
 export default class Gameboard {
     constructor (){
         const boardTemplate = [ // standar 10x10 board 2D Array
@@ -81,14 +83,14 @@ export default class Gameboard {
     }
 
     isGameOver(ships){
-       const shipsList = Object.values(ships)
+        const shipsList = Object.values(this.ships)
 
-       for(const ship of shipsList){
-        if(!ship.isSunk){
-            return false
+        for(const ship of shipsList){
+            if(!ship.isSunk()){
+                return false
+            }
         }
-       }
-       return true
+        return true
     }
 
 }

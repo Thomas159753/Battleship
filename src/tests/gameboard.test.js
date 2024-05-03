@@ -26,11 +26,12 @@ describe(('Gameboard tests'), () => {
         let ship2 = new Ship(1,'Ship2');
         board.placeShip(ship1,[[1,3],[2,3]]);
         board.receiveAttack([[2,3]]);
-        expect(board.isGameOver()).toBe(false);
+        
+        expect(board.isGameOver(board.ships)).toBe(false);
         board.placeShip(ship1,[[4,1]]);
         board.receiveAttack([[1,3]]);
         board.receiveAttack([[4,1]]);
 
-        expect(board.isGameOver(board.ships)).toBe(true); // input board.ships might be wrong
+        expect(board.isGameOver(board.ships)).toBe(true);
     })
 })
