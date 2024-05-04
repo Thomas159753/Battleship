@@ -1,8 +1,8 @@
-import Ship from "./ship.js"; //no need but i keep it
+import Ship from './ship.js';
 
 export default class Gameboard {
     constructor (){
-        const boardTemplate = [ // standar 10x10 board 2D Array
+        const boardTemplate = [ // standar 11x9 board 2D Array
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
@@ -13,6 +13,8 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
+
+ 
         ]
         this.missedAttacks = [];
         this.ships = {}
@@ -41,7 +43,7 @@ export default class Gameboard {
         if (!this.isInBounds(coordinates)){
             return false // Out-of-bounds
         }
-
+        
         for (const coord of coordinates) {
             const [row, column] = coord;
 
@@ -51,6 +53,7 @@ export default class Gameboard {
 
             this.board[row][column] = ship; // Place ship
         }
+
         this.ships[ship.name] = ship
         return true // Successful placement
     }
@@ -83,14 +86,19 @@ export default class Gameboard {
     }
 
     isGameOver(ships){
-        const shipsList = Object.values(this.ships)
+       const shipsList = Object.values(ships)
 
-        for(const ship of shipsList){
-            if(!ship.isSunk()){
-                return false
-            }
+       for(const ship of shipsList){
+        if(!ship.isSunk()){
+            return false
         }
-        return true
+       }
+       return true
     }
 
 }
+// let board = new Gameboard();
+
+// board.placeShip(new Ship(2, 'potato'), [[1,1],[1,2]])
+
+// board.ships

@@ -14,7 +14,7 @@ describe(('Player tests'), () => {
     })
     test("Sent Atack", () => {
         let enemy = new Player();
-        enemy.placeShip(new Ship(2,'potato'), [[1,1],[1,2]])
+        enemy.board.placeShip(new Ship(2,'potato'), [[1,1],[1,2]])
         player.sentAtack(enemy,[[1,1]])
         expect
     })
