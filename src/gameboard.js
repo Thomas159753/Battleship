@@ -2,7 +2,7 @@ import Ship from './ship.js';
 
 export default class Gameboard {
     constructor (){
-        const boardTemplate = [ // standar 11x9 board 2D Array
+        const boardTemplate = [ // standar 10x10 board 2D Array
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
@@ -22,11 +22,14 @@ export default class Gameboard {
         this.board = boardTemplate;
     }
 
-    isInBounds(coordinates){
+    isInBounds(coordinates, ship){
         if (!Array.isArray(coordinates) || coordinates.length === 0) {
             return false; // Invalid coordinates
         }
-
+        if (ship?.length && ship.length !== coordinates.length){
+            return false
+        }    
+        
         for (const coord of coordinates) {
             
             const [row, column] = coord;
@@ -34,13 +37,13 @@ export default class Gameboard {
             if (row < 0 || row >= this.board.length || column < 0 || column >= this.board[0].length){
                 return false // Out-of-bounds
             }
-            return true
         }
+        return true
     }
     
     placeShip(ship, coordinates){
-
-        if (!this.isInBounds(coordinates)){
+        
+        if (!this.isInBounds(coordinates, ship)){
             return false // Out-of-bounds
         }
         
