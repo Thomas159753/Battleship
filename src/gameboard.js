@@ -41,8 +41,8 @@ export default class Gameboard {
         return true
     }
     
-    placeShip(ship, coordinates){
-        
+    placeShip(ship, coordinates){ // need to make a statement if a ship is placed then to move it
+            
         if (!this.isInBounds(coordinates, ship)){
             return false // Out-of-bounds
         }
@@ -71,7 +71,7 @@ export default class Gameboard {
 
 
             if(this.board[row][column] === 'Miss' || this.board[row][column] === 'Hit'){ // if already played move
-                return `Already ${this.board[row][column]}`
+                return false
             }
 
             if(this.board[row][column] === ''){ // if its a miss

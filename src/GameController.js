@@ -32,7 +32,7 @@ export default class GameController{
     }
 
     switchTurns(){
-        this.playerTurn = this.playerTurn === this.player1 ? thiss.player2 : this.player1
+        this.playerTurn = this.playerTurn === this.player1 ? this.player2 : this.player1
     }
 
     addEventListeners() {
@@ -41,7 +41,7 @@ export default class GameController{
             
             let coordinates = this.getCoordinatesFromGrid(e);
 
-            this.handlePlayerAttack(coordinates)
+            this.makePlayerAttack(coordinates)
         })
     }
 
@@ -51,15 +51,34 @@ export default class GameController{
         return [[row,col]]
     }
 
-    handlePlayerAttack(coordinates){
-        let enemy = this.playerTurn === this.player1 ? thiss.player2 : this.player1
-        let result = this.playerTurn.sentAtack(enemy, coordinates);
+    makePlayerAttack(coordinates){
+        let enemy = this.playerTurn === this.player1 ? this.player2 : this.player1
+        this.playerTurn.sentAtack(enemy, coordinates);
 
         // make a render of the board here
 
-        if()
+        if(enemy.board.isGameOver){
+            this.isGameOver = true
+            //send a game over screen
+        }else{
+            this.switchTurns()
+            if(this.playerTurn.isComputer){
+                this.makeComputerAttack()
+            }
+        }
+    }
+
+    makeComputerAttack(){
+        let enemy = this.playerTurn === this.player1 ? this.player2 : this.player1
+        this.playerTurn.sentAtack(enemy);
+
+        // make a render of the board
+
+        if(enemy.board.isGameOver){
+            this.isGameOver = true
+            //send a game over screen 
+        }else{
+            this.switchTurns()
+        }
     }
 }
-
-// let gboard = new GameController
-// gboard.placeShips()
