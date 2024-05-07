@@ -9,24 +9,30 @@ export default class Player{
 
     sentAtack(enemy,coordinates){
         if (this.isComputer){
-            return this.makeRandomMove()
+            return this.makeRandomMove(enemy)
         }
-        enemy.board.receiveAttack(coordinates);
+        return enemy.board.receiveAttack(coordinates);
     }
 
-    makeRandomMove(){
+    makeRandomMove(enemy){
         let validmove = false;
-
+        let outcome;
         while(!validmove){
             let row = Math.floor(Math.random() * 10);
             let col = Math.floor(Math.random() * 10);
 
-            [[row, col]] = coordinates;
+            let coordinates = [[row, col]];
 
-            if(this.receiveAttack(coordinates) !== false){
-                validmove =true
+            outcome = enemy.board.receiveAttack(coordinates)
+            if(outcome !== false){
+                validmove = true
             }
         }
-        return true
+        return outcome
     }
 }
+
+// let p1 = new Player
+// let p2 = new Player
+
+// p1.sentAtack(p2, [[1,2]])

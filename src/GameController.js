@@ -53,11 +53,11 @@ export default class GameController{
 
     makePlayerAttack(coordinates){
         let enemy = this.playerTurn === this.player1 ? this.player2 : this.player1
-        this.playerTurn.sentAtack(enemy, coordinates);
+
+        let result = this.playerTurn.sentAtack(enemy, coordinates);
 
         // make a render of the board here
-
-        if(enemy.board.isGameOver){
+        if(enemy.board.isGameOver()){
             this.isGameOver = true
             //send a game over screen
         }else{
@@ -66,6 +66,8 @@ export default class GameController{
                 this.makeComputerAttack()
             }
         }
+        this.isGameOver
+        return result
     }
 
     makeComputerAttack(){
@@ -74,7 +76,7 @@ export default class GameController{
 
         // make a render of the board
 
-        if(enemy.board.isGameOver){
+        if(enemy.board.isGameOver()){
             this.isGameOver = true
             //send a game over screen 
         }else{
@@ -82,3 +84,7 @@ export default class GameController{
         }
     }
 }
+
+let agcon = new GameController
+agcon.placeShips()
+agcon.makePlayerAttack([[1,3]])

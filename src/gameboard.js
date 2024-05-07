@@ -69,7 +69,6 @@ export default class Gameboard {
         for (const coord of coordinates) {
             const [row, column] = coord
 
-
             if(this.board[row][column] === 'Miss' || this.board[row][column] === 'Hit'){ // if already played move
                 return false
             }
@@ -88,8 +87,8 @@ export default class Gameboard {
         return 'Error'
     }
 
-    isGameOver(ships){
-       const shipsList = Object.values(ships)
+    isGameOver(){
+       const shipsList = Object.values(this.ships)
 
        for(const ship of shipsList){
         if(!ship.isSunk()){
@@ -104,4 +103,4 @@ export default class Gameboard {
 
 // board.placeShip(new Ship(2, 'potato'), [[1,1],[1,2]])
 
-// board.ships
+// board.isGameOver()

@@ -7,17 +7,21 @@ export default class Ship {
     }
 
     hit(){
-        if(this.hits < this.length){ // if ship already sunk
-            this.hits += 1
-            return this.hits; // return the updated hit count            
+        if(this.sunk){ // if ship already sunk
+            return false // do nothing
         }
-        return false
+
+        this.hits += 1
+
+        if(this.hits >= this.length){
+            this.sunk = true;
+            return this.sunk
+        }
+        
+        return true
     }
 
     isSunk(){
-        if(this.hits === this.length){
-            this.sunk = true;
-        }
         return this.sunk; //Return the current status
     }
 }
