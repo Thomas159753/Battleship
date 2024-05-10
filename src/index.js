@@ -1,3 +1,4 @@
-import {Ship} from '../ship.js'
-import {player} from './player.js'
+import {UIrender} from './makeDom';
+import Player from './player.js'
 
+let player1 = new Player

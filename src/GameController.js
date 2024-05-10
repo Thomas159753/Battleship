@@ -84,7 +84,3 @@ export default class GameController{
         }
     }
 }
-
-let agcon = new GameController
-agcon.placeShips()
-agcon.makePlayerAttack([[1,3]])

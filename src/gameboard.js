@@ -1,5 +1,3 @@
-import Ship from './ship.js';
-
 export default class Gameboard {
     constructor (){
         const boardTemplate = [ // standar 10x10 board 2D Array
@@ -13,8 +11,6 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
-
- 
         ]
         this.missedAttacks = [];
         this.ships = {}
@@ -99,8 +95,3 @@ export default class Gameboard {
     }
 
 }
-// let board = new Gameboard();
-
-// board.placeShip(new Ship(2, 'potato'), [[1,1],[1,2]])
-
-// board.isGameOver()

@@ -31,8 +31,3 @@ export default class Player{
         return outcome
     }
 }
-
-// let p1 = new Player
-// let p2 = new Player
-
-// p1.sentAtack(p2, [[1,2]])
