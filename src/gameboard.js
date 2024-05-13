@@ -12,7 +12,7 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
         ]
-        this.missedAttacks = [];
+        this.playedMoves = new Map();
         this.ships = {}
 
         this.board = boardTemplate;
@@ -57,6 +57,10 @@ export default class Gameboard {
         return true // Successful placement
     }
 
+    getStatus(row, column){
+
+    }
+
     receiveAttack(coordinates){
         if (!this.isInBounds(coordinates)){
             return false // Out-of-bounds
@@ -65,16 +69,17 @@ export default class Gameboard {
         for (const coord of coordinates) {
             const [row, column] = coord
 
-            if(this.board[row][column] === 'Miss' || this.board[row][column] === 'Hit'){ // if already played move
+            if(this.playedMoves.has(`${row},${column}`)){ // if already played move
                 return false
             }
 
             if(this.board[row][column] === ''){ // if its a miss
-                this.missedAttacks.push(coord);
+                this.playedMoves.set(`${row},${column}`, 'Miss');
                 this.board[row][column] === 'Miss'
                 return 'Miss'
             }else if (typeof this.board[row][column] === 'object'){ // if its a hit
                 this.board[row][column].hit();
+                this.playedMoves.set(`${row},${column}`, 'Hit');
                 this.board[row][column] = 'Hit'
                 return 'Hit'
             }
@@ -93,5 +98,4 @@ export default class Gameboard {
        }
        return true
     }
-
 }

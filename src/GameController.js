@@ -53,9 +53,9 @@ export default class GameController{
 
     makePlayerAttack(coordinates){
         let enemy = this.playerTurn === this.player1 ? this.player2 : this.player1
-
+        
         let result = this.playerTurn.sentAtack(enemy, coordinates);
-
+        
         // make a render of the board here
         if(enemy.board.isGameOver()){
             this.isGameOver = true
@@ -66,7 +66,6 @@ export default class GameController{
                 this.makeComputerAttack()
             }
         }
-        this.isGameOver
         return result
     }
 
@@ -84,3 +83,7 @@ export default class GameController{
         }
     }
 }
+
+let test = new GameController();
+test.placeShips();
+test.makePlayerAttack([[1,1]])

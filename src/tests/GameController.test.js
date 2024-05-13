@@ -49,7 +49,7 @@ describe(('GameController'), () => {
     test('sends player attack and switches turns', () => {
         let coordinates = [[1,3]];
         let result = gameController.makePlayerAttack(coordinates);
-        expect(gameController.playerTurn).toBe(gameController.player2);
+        expect(gameController.playerTurn).toBe(gameController.player2); // will fail if player 2 is true for bot because the bot will attack
 
         expect(result).toBe('Hit');
 
