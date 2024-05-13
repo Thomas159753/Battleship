@@ -12,8 +12,8 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
             ['', '', '', '', '', '', '', '', '', '',],
         ]
-        this.playedMoves = new Map();
-        this.ships = {}
+        this.playedMoves = new Map(); // used to edit the dom
+        this.ships = {} 
 
         this.board = boardTemplate;
     }
@@ -22,7 +22,7 @@ export default class Gameboard {
         if (!Array.isArray(coordinates) || coordinates.length === 0) {
             return false; // Invalid coordinates
         }
-        if (ship?.length && ship.length !== coordinates.length){
+        if (ship?.length && ship.length !== coordinates.length){ //if ship is the same size with the coordinates.length [[1,1] , [1,2]]
             return false
         }    
         
@@ -58,7 +58,8 @@ export default class Gameboard {
     }
 
     getStatus(row, column){
-
+        if(this.playedMoves.has(`${row},${column}`)) return this.playedMoves.get(`${row},${column}`);
+        return 'Error'
     }
 
     receiveAttack(coordinates){
@@ -89,13 +90,13 @@ export default class Gameboard {
     }
 
     isGameOver(){
-       const shipsList = Object.values(this.ships)
+        const shipsList = Object.values(this.ships)
 
-       for(const ship of shipsList){
-        if(!ship.isSunk()){
-            return false
+        for(const ship of shipsList){
+            if(!ship.isSunk()){
+                return false
+            }
         }
-       }
-       return true
+        return true
     }
 }

@@ -83,7 +83,3 @@ export default class GameController{
         }
     }
 }
-
-let test = new GameController();
-test.placeShips();
-test.makePlayerAttack([[1,1]])

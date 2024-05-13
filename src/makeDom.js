@@ -29,7 +29,11 @@ export default class UIrender{
                 cel.dataset.row = row;
                 cel.dataset.col = col;
 
-                
+                const celstatus = getStatus(row, col);
+                cel.classList.add(celstatus)
+
+                //add the ship now here
+                // do i need the ships holder or do make a loop to go through the 2d array
             }
         }
         this.mainElement.appendChild(boardContaeiner)

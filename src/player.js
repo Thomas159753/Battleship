@@ -8,14 +8,14 @@ export default class Player{
     }
 
     sentAtack(enemy,coordinates){
-        if (this.isComputer){
+        if (this.isComputer){ // if computer is true
             return this.makeRandomMove(enemy)
         }
         return enemy.board.receiveAttack(coordinates);
     }
 
-    makeRandomMove(enemy){
-        let validmove = false;
+    makeRandomMove(enemy){ 
+        let validmove = false; // valid move if its played or not
         let outcome;
         while(!validmove){
             let row = Math.floor(Math.random() * 10);
