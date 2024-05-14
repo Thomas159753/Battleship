@@ -2,6 +2,7 @@ export default class Ship {
     constructor(length, name){
         this.length = length;
         this.name = name;
+        this.isPlaced = false
         this.sunk = false; // Stataus of ship condition
         this.hits = 0; // Counter for the number of hits
     }

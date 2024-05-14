@@ -13,7 +13,6 @@ export default class Gameboard {
             ['', '', '', '', '', '', '', '', '', '',],
         ]
         this.playedMoves = new Map(); // used to edit the dom
-        this.ships = {} 
 
         this.board = boardTemplate;
     }
@@ -52,8 +51,6 @@ export default class Gameboard {
 
             this.board[row][column] = ship; // Place ship
         }
-
-        this.ships[ship.name] = ship
         return true // Successful placement
     }
 
@@ -89,8 +86,8 @@ export default class Gameboard {
         return 'Error'
     }
 
-    isGameOver(){
-        const shipsList = Object.values(this.ships)
+    isGameOver(player){
+        const shipsList = Object.values(player.ships)
 
         for(const ship of shipsList){
             if(!ship.isSunk()){

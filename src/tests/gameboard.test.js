@@ -1,7 +1,12 @@
+import { jest } from '@jest/globals'; 
+jest.mock('../player.js');
+
 import Gameboard from '../gameboard.js';
 import Ship from '../ship.js';
+import Player from '../player.js';
 
 let board
+let mockPlayer= new Player('test')
 beforeEach(() => {
     board = new Gameboard();
   });
@@ -22,16 +27,18 @@ describe(('Gameboard tests'), () => {
         expect(board.receiveAttack([[2,3]])).toBe(false);
     })
     test("Test Game Over", () => {
-        let ship1 = new Ship(2,'Ship1');
-        let ship2 = new Ship(1,'Ship2');
-        board.placeShip(ship1,[[1,3],[2,3]]);
+
+        board.placeShip(mockPlayer.ships['Destroyer'],[[1,3],[2,3]]);
         board.receiveAttack([[2,3]]);
         
-        expect(board.isGameOver(board.ships)).toBe(false);
-        board.placeShip(ship1,[[4,1]]);
-        board.receiveAttack([[1,3]]);
-        board.receiveAttack([[4,1]]);
+        expect(board.isGameOver(mockPlayer)).toBe(false);
 
-        expect(board.isGameOver(board.ships)).toBe(true);
+        Object.values(mockPlayer.ships).forEach((ship) => {
+            for (let i = 0; i < ship.length; i++) {
+              ship.hit();
+            }
+        });
+
+        expect(board.isGameOver(mockPlayer)).toBe(true);
     })
 })

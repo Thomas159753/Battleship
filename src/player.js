@@ -1,10 +1,18 @@
 import Gameboard from './gameboard.js'
+import Ship from './ship.js';
 
 export default class Player{
     constructor(name, isComputer = false) {
         this.board = new Gameboard();
         this.name = name;
         this.isComputer = isComputer;
+        this.ships = {
+            "Destroyer": new Ship(2,'Destroyer'),
+            "Submarine": new Ship(3, 'Submarine'),
+            "Cruiser": new Ship(3, 'Cruiser'),
+            "Battleship": new Ship(4, 'Battleship'),
+            "Carrier": new Ship(5, 'Carrier')
+        }
     }
 
     sentAtack(enemy,coordinates){

@@ -54,16 +54,4 @@ describe(('GameController'), () => {
         expect(result).toBe('Hit');
 
     })
-
-    test('game ends when all ships are sunk', () => {
-        let enemyBoard = gameController.player2.board;
-
-        Object.values(enemyBoard.ships).forEach((ship) => {
-            for (let i = 0; i < ship.length; i++) {
-              ship.hit();
-            }
-          });
-        gameController.makePlayerAttack([[1,3]]);
-        expect(gameController.isGameOver).toBe(true);
-    })
 })
