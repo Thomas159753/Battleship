@@ -54,11 +54,6 @@ export default class Gameboard {
         return true // Successful placement
     }
 
-    getStatus(row, column){
-        if(this.playedMoves.has(`${row},${column}`)) return this.playedMoves.get(`${row},${column}`);
-        return 'Error'
-    }
-
     receiveAttack(coordinates){
         if (!this.isInBounds(coordinates)){
             return false // Out-of-bounds
