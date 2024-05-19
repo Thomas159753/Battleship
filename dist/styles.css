@@ -1,0 +1,30 @@
+@import '../src/styles/styles1.css';
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+:root{
+    --header: #22223B;
+    --text: rgb(255, 255, 255);
+    --button: #0f74f7;
+    --button-active: #358af8;
+    --button-hover: #0a59c0;
+    --third: #9A8C98;
+    --fourth: #C9ADA7;
+    --fith: #F2E9E4;
+    --invalid: #d11010;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1.5fr 10fr 0.4fr;
+    height: 100vh;
+}
+
+header,main,footer{
+    padding: 0 2rem 0 2rem;
+}

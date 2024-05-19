@@ -1,12 +1,12 @@
 import Player from './player.js'
 import UIrender from './makeDom.js'
 export default class GameController{
-    constructor(player1Name,player2Name){
-        this.player1 = new Player(player1Name);
-        this.player2 = new Player(player2Name,false);
-        this.playerTurn = this.player1;
-        this.isGameOver = false
-        this.domRender = new UIrender(this.player1,this.player2)
+    constructor(){
+        this.player1 = null;
+        this.player2 = null;
+        this.playerTurn = null;
+        this.isGameOver = false;
+        this.domRender = null;
     }
     placeShips(ship, coordinates){ //after when i do drag and drop or i dont need it
         this.player1.board.placeShip(this.player1.ships['Destroyer'], [[1,2], [1,3]]);
@@ -92,6 +92,47 @@ export default class GameController{
             this.switchTurns()
         }
     }
+
+    async handleForm(){
+        const textInputs = document.querySelectorAll('form input[type="text"]');
+        const form = document.querySelector('form');
+
+        //input validation
+        textInputs.forEach(input =>{
+            input.addEventListener("blur", (e) =>{
+
+                input.setCustomValidity("");
+                input.classList.remove('invalid');
+
+                if(input.validity.valueMissing){ // custom errors
+                    input.setCustomValidity("Name is mising");
+                    input.classList.add('invalid');
+                }
+
+            })
+        })
+
+        //form data handle
+        return new Promise((resolve, reject) => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(form); //get the form values
+                const formObject = Object.fromEntries(formData.entries()); // make them into an object
+                formObject.PC = formObject.PC === 'on' // make it into true/false instead of on/off
+                resolve(formObject)
+            });
+        })
+    }
+
+    async startGame() {
+        const formObject = await this.handleForm(); // Wait for handleForm to complete
+
+        //assigning new players and playerTurn  
+        this.player1 = new Player(formObject.player1);
+        this.player2 = new Player(formObject.player2,formObject.PC);
+        this.playerTurn = this.player1;
+        this.domRender = new UIrender(this.player1,this.player2);
+
+        this.placeShips(); // Then call placeShips
+    }
 }
-// let test = new GameController()
-// test.placeShips()

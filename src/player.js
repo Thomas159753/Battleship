@@ -2,7 +2,7 @@ import Gameboard from './gameboard.js'
 import Ship from './ship.js';
 
 export default class Player{
-    constructor(name = 'PC', isComputer = false) {
+    constructor(name, isComputer = false) {
         this.board = new Gameboard();
         this.name = name;
         this.isComputer = isComputer;

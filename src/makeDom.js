@@ -34,6 +34,8 @@ export default class UIrender{
 
                 if(typeof celstatus === 'object' && showShip){
                     cell.classList.add('Ship');
+                    cell.classList.add(`${celstatus.name}`);
+                
                 }
                 if(celstatus !== '' && typeof celstatus !== 'object'){
                     
