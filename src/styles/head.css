@@ -9,11 +9,13 @@ header{
     font-size: 3rem;
     flex-shrink: 0;
 }
-
+.form-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 form{
     display: flex;
-    flex-grow: 1;
-    justify-content: center;
     align-items: center;
     gap: 1rem;
 }
@@ -71,4 +73,3 @@ button:hover{
 button:active{
     background-color: var(--button-active);
 }
-

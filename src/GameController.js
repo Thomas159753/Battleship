@@ -79,7 +79,7 @@ export default class GameController{
         return result
     }
 
-    makeComputerAttack(){
+    makeComputerAttack(){ 
         let enemy = this.playerTurn === this.player1 ? this.player2 : this.player1
         this.playerTurn.sentAtack(enemy);
 
@@ -93,7 +93,7 @@ export default class GameController{
         }
     }
 
-    async handleForm(){
+    async handleForm(){ //error with custom validity
         const textInputs = document.querySelectorAll('form input[type="text"]');
         const form = document.querySelector('form');
 

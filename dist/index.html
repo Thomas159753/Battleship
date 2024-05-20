@@ -10,18 +10,20 @@
 <body>
     <header>
         <h1 class="logo">BattleShips</h1>
-        <form>
-            <label for="player1">Player 1:</label>
-            <input type="text" id="player1" name="player1" required>
-            
-            <label for="player2">Player 2:</label>
-            <input type="text" id="player2" name="player2" required>
-
-            <label for="PC">Second player is PC?</label>
-            <input type="checkbox" id="PC" name="PC">
-
-            <button type="submit">Start Game</button>
-        </form>
+        <div class="form-container">
+            <form>
+                <label for="player1">Player 1:</label>
+                <input type="text" id="player1" name="player1" required>
+                
+                <label for="player2">Player 2:</label>
+                <input type="text" id="player2" name="player2" required>
+    
+                <label for="PC">Second player is PC?</label>
+                <input type="checkbox" id="PC" name="PC">
+    
+                <button type="submit">Start Game</button>
+            </form>
+        </div>
     </header>
     <main id="main">
         <div class="infoText"></div>

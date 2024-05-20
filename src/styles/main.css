@@ -1,0 +1,26 @@
+main{
+    display: grid;
+    grid-template-rows: 0.1fr 1.5fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.infoText{
+    grid-column: 1/3;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+#enemy{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.board{
+    
+}

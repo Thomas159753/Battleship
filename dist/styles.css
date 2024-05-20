@@ -1,4 +1,6 @@
-@import '../src/styles/styles1.css';
+@import '../src/styles/head.css';
+@import '../src/styles/footer.css';
+@import '../src/styles/main.css';
 
 * {
     box-sizing: border-box;
@@ -14,8 +16,8 @@
     --button-active: #358af8;
     --button-hover: #0a59c0;
     --third: #9A8C98;
-    --fourth: #C9ADA7;
-    --fith: #F2E9E4;
+    --footer: #C9ADA7;
+    --background-color: #F2E9E4;
     --invalid: #d11010;
 }
 
@@ -23,6 +25,7 @@ body {
     display: grid;
     grid-template-rows: 1.5fr 10fr 0.4fr;
     height: 100vh;
+    background-color: var(--background-color);
 }
 
 header,main,footer{
