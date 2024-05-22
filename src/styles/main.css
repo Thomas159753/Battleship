@@ -21,6 +21,40 @@ main{
     grid-row: 2/3;
 }
 
-.board{
-    
+.infoText,.caption{
+    font-size: 1.8rem;
 }
+
+.caption{
+    display: flex;
+    align-items: center;
+    padding: 0.8vh;
+    text-align: center;
+}
+
+.board{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-grid{
+    display: grid;
+    padding: 0.8vh;
+    grid-template-rows: repeat(10, 4.8vh);
+    grid-template-columns: repeat(10, 4.8vh);
+    gap: 0.8vh;
+    background-color: var(--footer);
+}
+
+.cell{
+    width: 4.8vh;
+    height: 4.8vh;
+    background-color: var(--cell);
+}
+
+#enemy > .board-grid > .cell {
+    cursor: pointer;
+}
+

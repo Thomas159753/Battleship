@@ -1,6 +1,8 @@
+@import '../src/styles/ships.css';
 @import '../src/styles/head.css';
 @import '../src/styles/footer.css';
 @import '../src/styles/main.css';
+
 
 * {
     box-sizing: border-box;
@@ -15,10 +17,15 @@
     --button: #0f74f7;
     --button-active: #358af8;
     --button-hover: #0a59c0;
-    --third: #9A8C98;
+    --cell: #9A8C98;
     --footer: #C9ADA7;
     --background-color: #F2E9E4;
     --invalid: #d11010;
+    --Destroyer: #1ac0b8;
+    --Battleship: #9dda43;
+    --Submarine: #4656cf;
+    --Cruiser: #9d46cf;
+    --Carrier: #cf4671;
 }
 
 body {

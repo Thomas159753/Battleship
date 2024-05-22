@@ -26,6 +26,8 @@ export default class UIrender{
         for(let row = 0; row < 10; row++){
             for(let col = 0; col < 10; col++){
                 const cell = document.createElement('div');
+                const imgHolder = document.createElement('a');
+                
                 cell.classList.add('cell');
                 cell.dataset.row = row;
                 cell.dataset.col = col;
@@ -42,6 +44,7 @@ export default class UIrender{
                     cell.classList.add(`${celstatus}`);
                 }
                 boardGrid.appendChild(cell);
+                cell.appendChild(imgHolder);
             }
         }
         boardContainer.appendChild(boardGrid);
@@ -49,9 +52,9 @@ export default class UIrender{
     }
 
     updateBoard(player, showShip){
-        const board = showShip? document.getElementById('player') : document.getElementById('enemy');
+        // const board = showShip? document.getElementById('player') : document.getElementById('enemy');
 
-        const boardGrid = board.querySelector('.board-grid');
+        // const boardGrid = board.querySelector('.board-grid');
 
         for(let row = 0; row < 10; row++){
             for(let col = 0; col < 10; col++){
