@@ -2,7 +2,7 @@ import Gameboard from './gameboard.js'
 import Ship from './ship.js';
 
 export default class Player{
-    constructor(name = 'PC', isComputer = false) {
+    constructor(name, isComputer = false) {
         this.board = new Gameboard();
         this.name = name;
         this.isComputer = isComputer;
@@ -18,8 +18,9 @@ export default class Player{
     sentAtack(enemy,coordinates){
         if (this.isComputer){ // if computer is true
             return this.makeRandomMove(enemy)
+        }else{
+            return enemy.board.receiveAttack(coordinates);
         }
-        return enemy.board.receiveAttack(coordinates);
     }
 
     makeRandomMove(enemy){ 

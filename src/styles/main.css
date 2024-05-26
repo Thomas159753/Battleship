@@ -1,0 +1,66 @@
+main{
+    display: grid;
+    grid-template-rows: 0.1fr 1.5fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.infoText{
+    grid-column: 1/3;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+#enemy{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.infoText,.caption{
+    font-size: 1.8rem;
+}
+
+.caption{
+    display: flex;
+    align-items: center;
+    padding: 0.8vh;
+    text-align: center;
+}
+
+.board{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-grid{
+    display: grid;
+    padding: 0.8vh;
+    grid-template-rows: repeat(10, 4.8vh);
+    grid-template-columns: repeat(10, 4.8vh);
+    gap: 0.8vh;
+    background-color: var(--footer);
+}
+
+.cell{
+    display: flex;
+    width: 4.8vh;
+    height: 4.8vh;
+    background-color: var(--cell);
+    text-align: center;
+}
+
+#enemy > .board-grid > .cell {
+    cursor: pointer;
+}
+.Hit > a{
+    width: 4vh;
+    height: 4vh;
+}
+
