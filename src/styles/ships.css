@@ -1,0 +1,21 @@
+.Destroyer{
+    background-color: var(--Destroyer) !important;
+}
+.Battleship{
+    background-color: var(--Battleship) !important;
+}
+.Submarine{
+    background-color: var(--Submarine) !important;
+}
+.Cruiser{
+    background-color: var(--Cruiser) !important;
+}
+.Carrier{
+    background-color: var(--Carrier) !important;
+}
+.Hit > a{
+    background-image: url('./img/skull.svg');  
+}
+.miss > a{
+    
+}
