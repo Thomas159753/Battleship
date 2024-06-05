@@ -1,21 +1,31 @@
-.Destroyer{
-    background-color: var(--Destroyer) !important;
+.Destroyer > span{
+    background-color: var(--Destroyer);
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
-.Battleship{
-    background-color: var(--Battleship) !important;
+.Battleship > span{
+    background-color: var(--Battleship);
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
-.Submarine{
-    background-color: var(--Submarine) !important;
+.Submarine > span{
+    background-color: var(--Submarine);
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
-.Cruiser{
-    background-color: var(--Cruiser) !important;
+.Cruiser > span{
+    background-color: var(--Cruiser);
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
-.Carrier{
-    background-color: var(--Carrier) !important;
-}
-.Hit > a{
-    background-image: url('./img/skull.svg');  
-}
-.miss > a{
-    
+.Carrier > span{
+    background-color: var(--Carrier);
+    display: flex;
+    width: 100%;
+    height: 100%;
+
 }

@@ -53,14 +53,9 @@ main{
     width: 4.8vh;
     height: 4.8vh;
     background-color: var(--cell);
-    text-align: center;
 }
 
 #enemy > .board-grid > .cell {
     cursor: pointer;
-}
-.Hit > a{
-    width: 4vh;
-    height: 4vh;
 }
 
