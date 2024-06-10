@@ -1,39 +1,28 @@
 export default class Gameboard {
-    constructor (){
-        const boardTemplate = [ // standar 10x10 board 2D Array
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-            ['', '', '', '', '', '', '', '', '', '',],
-        ]
+    constructor (size = 10){
+        this.boardSize = size;
         this.playedMoves = new Map(); // used to edit the dom
+        this.board = new Map()
+    }
 
-        this.board = boardTemplate;
+    formatCoordinates([row, column]) {
+        return `${row},${column}`;
     }
 
     isInBounds(coordinates, ship){
-        if (!Array.isArray(coordinates) || coordinates.length === 0) {
+        if (!Array.isArray(coordinates) || coordinates.length === 0 || !coordinates) {
             return false; // Invalid coordinates
         }
-        if (ship?.length && ship.length !== coordinates.length){ //if ship is the same size with the coordinates.length [[1,1] , [1,2]]
-            return false
+        if (ship?.length && ship.length !== coordinates.length){
+            return false // Ship size does not match coordinates length
         }    
         
-        for (const coord of coordinates) {
-            
-            const [row, column] = coord;
-
-            if (row < 0 || row >= this.board.length || column < 0 || column >= this.board[0].length){
-                return false // Out-of-bounds
+        for (const [row, column] of coordinates) {
+            if (row < 0 || row >= this.boardSize || column < 0 || column >= this.boardSize) {
+                return false; // Out-of-bounds
             }
         }
-        return true
+        return true;
     }
     
     placeShip(ship, coordinates){ // need to make a statement if a ship is placed then to move it
@@ -43,52 +32,40 @@ export default class Gameboard {
         }
         
         for (const coord of coordinates) {
-            const [row, column] = coord;
-
-            if(this.board[row][column] !== ''){
-                return false // Cell is occupeied
+            const key = this.formatCoordinates(coord);
+            if (this.board.has(key)){
+                return false// Ship is already there
             }
+        }
 
-            this.board[row][column] = ship; // Place ship
+        for (const coord of coordinates) {
+            const key = this.formatCoordinates(coord)
+            this.board.set(key, ship)
         }
         return true // Successful placement
     }
 
-    receiveAttack(coordinates){
-        if (!this.isInBounds(coordinates)){
-            return false // Out-of-bounds
+    receiveAttack(coordinates){ 
+        if (!this.isInBounds(coordinates) || coordinates.length !== 1){
+            return 'Error'; // Out-of-bounds
         }
 
-        for (const coord of coordinates) {
-            const [row, column] = coord
+        const coord = coordinates[0];
+        const key = this.formatCoordinates(coord);
 
-            if(this.playedMoves.has(`${row},${column}`)){ // if already played move
-                return false
-            }
-
-            if(this.board[row][column] === ''){ // if its a miss
-                this.playedMoves.set(`${row},${column}`, 'Miss');
-                this.board[row][column] === 'Miss'
-                return 'Miss'
-            }else if (typeof this.board[row][column] === 'object'){ // if its a hit
-                this.board[row][column].hit();
-                this.playedMoves.set(`${row},${column}`, 'Hit');
-                this.board[row][column] = 'Hit'
-                return 'Hit'
-            }
+        if(this.playedMoves.has(key)){
+            return false // Already played move
         }
 
-        return 'Error'
-    }
+        if(!this.board.has(key)){ // Miss
+            this.playedMoves.set(key, 'Miss');
+            return 'Miss'
+        } else if (this.board.has(key)){ // Hit
+            let ship = this.board.get(key); // Get the ship 
+            ship.hit(); //add a hit
 
-    isGameOver(player){
-        const shipsList = Object.values(player.ships)
-
-        for(const ship of shipsList){
-            if(!ship.isSunk()){
-                return false
-            }
+            this.playedMoves.set(key, 'Hit');
+            return 'Hit'
         }
-        return true
     }
 }

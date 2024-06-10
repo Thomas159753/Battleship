@@ -18,8 +18,9 @@ export default class Player{
     sentAtack(enemy,coordinates){
         if (this.isComputer){ // if computer is true
             return this.makeRandomMove(enemy)
+        }else{
+            return enemy.board.receiveAttack(coordinates);
         }
-        return enemy.board.receiveAttack(coordinates);
     }
 
     makeRandomMove(enemy){ 

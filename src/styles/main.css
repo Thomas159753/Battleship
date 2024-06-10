@@ -49,6 +49,7 @@ main{
 }
 
 .cell{
+    display: flex;
     width: 4.8vh;
     height: 4.8vh;
     background-color: var(--cell);
