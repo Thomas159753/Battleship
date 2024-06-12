@@ -1,5 +1,6 @@
 import Player from './player.js'
 import UIrender from './makeDom.js'
+
 export default class GameController{
     constructor(){
         this.player1 = null;
@@ -9,41 +10,9 @@ export default class GameController{
         this.domRender = null;
         this.gamePaused = false
     }
-    placeShips(ship, coordinates){ //after when i do drag and drop or i dont need it
-        // Place ships for player1
-        this.player1.board.placeShip(this.player1.ships['Destroyer'], [[1, 2], [1, 3]]);
-        this.player1.ships['Destroyer'].isPlaced = true;
-
-        this.player1.board.placeShip(this.player1.ships["Submarine"], [[4, 6], [5, 6], [6, 6]]);
-        this.player1.ships['Submarine'].isPlaced = true;
-
-        this.player1.board.placeShip(this.player1.ships["Cruiser"], [[4, 7], [4, 8], [4, 9]]);
-        this.player1.ships['Cruiser'].isPlaced = true;
-
-        this.player1.board.placeShip(this.player1.ships["Battleship"], [[3, 1], [3, 2], [3, 3], [3, 4]]);
-        this.player1.ships['Battleship'].isPlaced = true;
-
-        this.player1.board.placeShip(this.player1.ships["Carrier"], [[9, 1], [9, 2], [9, 3], [9, 4], [9, 5]]);
-        this.player1.ships['Carrier'].isPlaced = true;
-
-        // Place ships for player2
-        this.player2.board.placeShip(this.player2.ships['Destroyer'], [[1, 3], [1, 4]]);
-        this.player2.ships['Destroyer'].isPlaced = true;
-
-        this.player2.board.placeShip(this.player2.ships["Submarine"], [[4, 7], [4, 8], [4, 9]]);
-        this.player2.ships['Submarine'].isPlaced = true;
-
-        this.player2.board.placeShip(this.player2.ships["Cruiser"], [[5, 7], [6, 7], [7, 7]]);
-        this.player2.ships['Cruiser'].isPlaced = true;
-
-        this.player2.board.placeShip(this.player2.ships["Battleship"], [[5, 1], [5, 2], [5, 3], [5, 4]]);
-        this.player2.ships['Battleship'].isPlaced = true;
-
-        this.player2.board.placeShip(this.player2.ships["Carrier"], [[9, 1], [9, 2], [9, 3], [9, 4], [9, 5]]);
-        this.player2.ships['Carrier'].isPlaced = true;
-
-        this.domRender.updateBoard(this.player1, "player");
-        this.domRender.updateBoard(this.player2, "enemy");
+    placeShips(ship, coordinates){
+        this.playerTurn.board.placeShip(ship,coordinates)
+        this.domRender.updateBoard(this.playerTurn, "player");
     }
 
     async handleTurns() {
@@ -171,3 +140,35 @@ export default class GameController{
         });
     }
 }
+
+        // Place ships for player1
+        // this.player1.board.placeShip(this.player1.ships['Destroyer'], [[1, 2], [1, 3]]);
+        // this.player1.ships['Destroyer'].isPlaced = true;
+
+        // this.player1.board.placeShip(this.player1.ships["Submarine"], [[4, 6], [5, 6], [6, 6]]);
+        // this.player1.ships['Submarine'].isPlaced = true;
+
+        // this.player1.board.placeShip(this.player1.ships["Cruiser"], [[4, 7], [4, 8], [4, 9]]);
+        // this.player1.ships['Cruiser'].isPlaced = true;
+
+        // this.player1.board.placeShip(this.player1.ships["Battleship"], [[3, 1], [3, 2], [3, 3], [3, 4]]);
+        // this.player1.ships['Battleship'].isPlaced = true;
+
+        // this.player1.board.placeShip(this.player1.ships["Carrier"], [[9, 1], [9, 2], [9, 3], [9, 4], [9, 5]]);
+        // this.player1.ships['Carrier'].isPlaced = true;
+
+        // Place ships for player2
+        // this.player2.board.placeShip(this.player2.ships['Destroyer'], [[1, 3], [1, 4]]);
+        // this.player2.ships['Destroyer'].isPlaced = true;
+
+        // this.player2.board.placeShip(this.player2.ships["Submarine"], [[4, 7], [4, 8], [4, 9]]);
+        // this.player2.ships['Submarine'].isPlaced = true;
+
+        // this.player2.board.placeShip(this.player2.ships["Cruiser"], [[5, 7], [6, 7], [7, 7]]);
+        // this.player2.ships['Cruiser'].isPlaced = true;
+
+        // this.player2.board.placeShip(this.player2.ships["Battleship"], [[5, 1], [5, 2], [5, 3], [5, 4]]);
+        // this.player2.ships['Battleship'].isPlaced = true;
+
+        // // this.player2.board.placeShip(this.player2.ships["Carrier"], [[9, 1], [9, 2], [9, 3], [9, 4], [9, 5]]);
+        // this.player2.ships['Carrier'].isPlaced = true;
